@@ -11,6 +11,7 @@ var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
 
+// Fetch's username and repos on event (form submision - button clicked - with userinput)
 // executed upon a form submission browser event
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -27,13 +28,12 @@ var formSubmitHandler = function(event) {
     } else {
         alert("Please enter a Github username");
     }
-    // event listener is working correctly
-    console.log(event);
 };
 // submit event listener
 userFormEl.addEventListener("submit", formSubmitHandler);
 
 
+// Fetches repos from the github api
 var getUserRepos = function(user) {
     //format the github api url
     var apiUrl = "http://api.github.com/users/" + user + "/repos";
@@ -74,10 +74,30 @@ var displayRepos = function(repos, searchTerm) {
         // append container (for repo names)
         repoEl.appendChild(titleEl);
 
+// To Display Repo Issues on the Page
+        // create a status element 
+        var statusEl = document.createElement("span");
+        statusEl.classList = "flex-row align-center";
+
+        // check if current repo has issues or not
+        if (repos[i].open_issues_count > 0) {
+            statusEl.innerHTML =
+            //display the number of issues and add a red X icon next to it
+            "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + " issue(s)";
+        } else {
+            // If there are no issues, we'll display a blue check mark instead
+            statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+        }
+
+        //append to container (beside repo name)
+        repoEl.appendChild(statusEl);
+    
+
         // append container to the dom (repos)
         repoContainerEl.appendChild(repoEl);
     }
 };
+
 
 
 
