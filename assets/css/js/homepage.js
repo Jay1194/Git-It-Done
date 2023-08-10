@@ -39,20 +39,36 @@ var getUserRepos = function(user) {
     var apiUrl = "http://api.github.com/users/" + user + "/repos";
 
 // make a request to the url
-  fetch(apiUrl).then(function(response) {
+  fetch(apiUrl)
+  .then(function(response) {
+    // Up To GitHub's API to tell us If they couldn't find that user and to send a response back
+    if (response.ok) {
     // When the response data is converted to JSON, it will be sent from getUserRepos() to displayRepos()
     response.json().then(function(data) {
         displayRepos(data, user);
-        // repo results
-        console.log(data);
     });
-  });
+    // custom alert message to let the user know that their search was unsuccessful
+  } else {
+    alert("Error: Github User Not Found");
+  }
+})
+//Catch Network Errors (notify user to ensure they don't this the app is broken)
+.catch(function(error) {
+    // Notice this `.catch()` getting chained onto the end of the `.then()` method
+    alert("Unable to connect to Github");
+});
 };
 
 
 //Display Repository Data
 // accept both the array of repository data and the term we searched for as parameters
 var displayRepos = function(repos, searchTerm) {
+
+    // check if api returned any repos or if User Has No Repositories
+    if (repos.length === 0) {
+        repoContainerEl.taxtContent = "No repositories found.";
+        return;
+    }
 
     // clear old content before displaying new content
     repoContainerEl.textContent = "";
