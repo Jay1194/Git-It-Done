@@ -31,7 +31,13 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-8"></div>
+    <!-- data will get displayed and to the right column of the page -->
+    <div class="col-12 col-md-8">
+      <!-- write the search term to so that users know whose repositories they're looking at.-->
+      <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>
+      <!-- empty <div> element that we'll write all of the repository data to -->
+      <div id="repos-container" class="list-group"></div>
+    </div>
   </main>
 
   <script src="assets\css\js\homepage.js"></script>
