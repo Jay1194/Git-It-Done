@@ -90,6 +90,7 @@ var displayRepos = function(repos, searchTerm) {
         // append container (for repo names)
         repoEl.appendChild(titleEl);
 
+        
 // To Display Repo Issues on the Page
         // create a status element 
         var statusEl = document.createElement("span");
@@ -107,7 +108,6 @@ var displayRepos = function(repos, searchTerm) {
 
         //append to container (beside repo name)
         repoEl.appendChild(statusEl);
-    
 
         // append container to the dom (repos)
         repoContainerEl.appendChild(repoEl);
