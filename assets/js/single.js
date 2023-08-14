@@ -7,7 +7,7 @@ var limitWarningEl = document.querySelector("#limit-warning");
 
 //list repos issues
 var getRepoIssues = function(repo) {
-    //git api url
+    //fetch api url and change order of how it is displayed
     var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
      // request was successful
     fetch(apiUrl).then(function(response) {
