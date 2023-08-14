@@ -83,8 +83,8 @@ var displayRepos = function(repos, searchTerm) {
         var repoEl = document.createElement("a");
         repoEl.classList = "list-item flex-row justify-space-between align-center";
 
-        // links to second page
-        repoEl.setAttribute("href", "./single-repo.html");
+        // links to second page (and links to the repo issues clicked using query parameters)
+        repoEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
 
 
         // create a span element to hold repository name
