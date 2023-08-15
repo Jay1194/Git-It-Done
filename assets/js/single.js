@@ -4,6 +4,22 @@ var issueContainerEl = document.querySelector("#issues-container");
 // api limit warning at bottom of page
 var limitWarningEl = document.querySelector("#limit-warning");
 
+// update repo header name when clicked second page
+var repoNameEl = document.querySelector("#repo-name");
+
+// extract the query value from the query string API call
+var getRepoName = function() {
+    //to extract the repo name from the query string
+    var queryString = document.location.search;
+    //  By splitting on the =, we end up with an array with two elements. Using bracket notation to access the second ellement from array
+    var repoName = queryString.split("=")[1];
+    console.log(repoName);
+    //will use the repoName to fetch the related issues from the GitHub API issues endpoint.
+    getRepoIssues(repoName);
+    //this variable to update the element's text content
+    repoNameEl.textContent = repoName;
+}
+
 
 //list repos issues
 var getRepoIssues = function(repo) {
@@ -29,7 +45,7 @@ var getRepoIssues = function(repo) {
     })
 };
 // hard coded repo to generate issues
-getRepoIssues("facebook/react");
+
 
 
 // display dom elements on page
@@ -97,3 +113,5 @@ var displayWarning = function(repo) {
     // append to warning container
     limitWarningEl.appendChild(linkEl);
 };
+
+getRepoName()
