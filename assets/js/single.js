@@ -13,12 +13,23 @@ var getRepoName = function() {
     var queryString = document.location.search;
     //  By splitting on the =, we end up with an array with two elements. Using bracket notation to access the second ellement from array
     var repoName = queryString.split("=")[1];
-    console.log(repoName);
+    
+    //If the repoName is valid, feed the value to the fetch call; otherwise, redirect back to the index.html page.
+    if (repoName) {
+        repoNameEl.textContent = repoName;
+        getRepoIssues(repoName);
+    }
+    // send user back to home page
+    else {
+        document.location.replace("./index.html");
+    }
+    
     //will use the repoName to fetch the related issues from the GitHub API issues endpoint.
     getRepoIssues(repoName);
+
     //this variable to update the element's text content
     repoNameEl.textContent = repoName;
-}
+};
 
 
 //list repos issues
@@ -39,13 +50,11 @@ var getRepoIssues = function(repo) {
                 }
             });
         }
+        // if not successful, redirect to homepage
         else {
-            alert("there was a problem with your request!")
+            location.replace("./index.html");
         }
-    })
-};
-// hard coded repo to generate issues
-
+    })};
 
 
 // display dom elements on page
