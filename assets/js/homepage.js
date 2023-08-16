@@ -10,6 +10,9 @@ var repoContainerEl = document.querySelector("#repos-container");
 // refernce To username that was searched in form
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
+//making the call to the API every time the buttons are clicked 
+var languageButtonsEl = document.querySelector("#language-buttons");
+
 
 // Fetch's username and repos on event (form submision - button clicked - with userinput)
 // executed upon a form submission browser event
@@ -118,6 +121,42 @@ var displayRepos = function(repos, searchTerm) {
     }
 };
 
+// fetch data based of sorted conditions
+var getFeaturedRepos = function (language) {
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+    // log the response to the console
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            //extract the JSON from the response
+            response.json().then(function(data) {
+                //featured repos appear on the page by passing the parameters values to displayrepo and calling (getFeaturedRepos("javascript"); in console.
+                displayRepos(data.items, language);
+            });
+        //error handling
+        } else {
+            alert('Error: Github User Not Found');
+        }
+    });
+};
+
+
+//  function should use event delegation to handle all clicks on buttons.
+var buttonClickHandler = function (event) {
+    var language = event.target.getAttribute("data-language");
+    //log the value of language for testing purposes.
+    console.log(language);
+
+    //call the getFeaturedRepos() function and pass the value we just retrieved from data-language as the argument, why we make sure data exists (The delegated event will still trigger on other elements that don’t have a data-* attribute)
+    if (language) {
+        getFeaturedRepos(language);
+        // to clear out any remaining text from the repo container  Even though this line comes after getFeaturedRepos(), it will always execute first, because getFeaturedRepos() is asynchronous and will take longer to get a response from GitHub's API.()
+        repoContainerEl.textContent = "";
+    }
+};
+
+// event delegation (activate on click of langauge buttons)
+languageButtonsEl.addEventListener("click", buttonClickHandler);
 
 
 
