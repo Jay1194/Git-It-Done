@@ -11,8 +11,7 @@ var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
 //making the call to the API every time the buttons are clicked 
-var languageButtonsEl = document.querySelector("#language-buttons");
-
+var  languageButtonsEl = document.querySelector("#language-buttons");
 
 // Fetch's username and repos on event (form submision - button clicked - with userinput)
 // executed upon a form submission browser event
@@ -34,7 +33,6 @@ var formSubmitHandler = function(event) {
 };
 // submit event listener
 userFormEl.addEventListener("submit", formSubmitHandler);
-
 
 // Fetches repos from the github api
 var getUserRepos = function(user) {
@@ -61,7 +59,6 @@ var getUserRepos = function(user) {
     alert("Unable to connect to Github");
 });
 };
-
 
 //Display Repository Data
 // accept both the array of repository data and the term we searched for as parameters
@@ -96,7 +93,6 @@ var displayRepos = function(repos, searchTerm) {
 
         // append container (for repo names)
         repoEl.appendChild(titleEl);
-
         
 // To Display Repo Issues on the Page
         // create a status element 
@@ -139,7 +135,6 @@ var getFeaturedRepos = function (language) {
         }
     });
 };
-
 
 //  function should use event delegation to handle all clicks on buttons.
 var buttonClickHandler = function (event) {
