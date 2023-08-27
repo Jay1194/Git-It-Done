@@ -31,8 +31,6 @@ var formSubmitHandler = function(event) {
         alert("Please enter a Github username");
     }
 };
-// submit event listener
-userFormEl.addEventListener("submit", formSubmitHandler);
 
 // Fetches repos from the github api
 var getUserRepos = function(user) {
@@ -149,6 +147,8 @@ var buttonClickHandler = function (event) {
         repoContainerEl.textContent = "";
     }
 };
+// submit event listener
+userFormEl.addEventListener("submit", formSubmitHandler);
 
 // event delegation (activate on click of langauge buttons)
 languageButtonsEl.addEventListener("click", buttonClickHandler);
