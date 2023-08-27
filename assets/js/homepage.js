@@ -37,7 +37,7 @@ userFormEl.addEventListener("submit", formSubmitHandler);
 // Fetches repos from the github api
 var getUserRepos = function(user) {
     //format the github api url
-    var apiUrl = "http://api.github.com/users/" + user + "/repos";
+    var apiUrl = "https://api.github.com/users/" + user + "/repos";
 
 // make a request to the url
   fetch(apiUrl)
