@@ -8,6 +8,6 @@ I've developed a web application that employs HTML, CSS, JavaScript, and DOM man
 
 ## Deployemnt
 
-* Application Deployment URL - https://jay1194.github.io/git-it-done/
+* Application Deployment URL - https://jay1194.github.io/Git-It-Done/
 
-*  GitHub Repository -  https://github.com/Jay1194/git-it-done
+*  GitHub Repository -  https://github.com/Jay1194/Git-It-Done
