@@ -1,4 +1,4 @@
-# git-it-done
+# Git-It-Done
 
 ## Description
 I've developed a web application that employs HTML, CSS, JavaScript, and DOM manipulation. This application utilizes server-side APIs to conduct searches on GitHub based on either username or programming language. Its purpose is to identify open source projects that currently have open issues and pull requests.
